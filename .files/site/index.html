@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Retort Rumble</title>
+        <!-- Doesn't work with websockets -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="connect-src 'self'"> -->
+    </head>
+    <body>
+        <div class="cell-1-3">
+            <h2 id="time">00:00</h2>
+        </div>
+
+        <script type="text/javascript">
+            var conn = new WebSocket('ws://192.168.56.105:8080/chat');
+            conn.onmessage = function(e) {
+                var message = JSON.parse(e.data)
+                document.getElementById(message['id']).innerHTML = message['data'];
+            }
+       </script>
+    </body>
+</html>
